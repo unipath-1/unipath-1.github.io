@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Transfer Finder | UniSuccessHub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero-section {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 40px 0;
+        }
+        .course-input-card {
+            border: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .university-card {
+            transition: transform 0.2s;
+            border: none;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 1rem;
+        }
+        .university-card:hover {
+            transform: translateY(-3px);
+        }
+        .match-badge {
+            font-weight: bold;
+            font-size: 0.75rem;
+        }
+        .high-match {
+            background-color: #d1edff;
+            color: #0a58ca;
+            border: 1px solid #0a58ca;
+        }
+        .medium-match {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #856404;
+        }
+        .low-match {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #721c24;
+        }
+        .course-tag {
+            background-color: #e9ecef;
+            color: #495057;
+            font-size: 0.75rem;
+        }
+        .compact-table th {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .compact-table td {
+            font-size: 0.8rem;
+            padding: 0.6rem;
+        }
+        .search-placeholder {
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="fas fa-exchange-alt me-2"></i>UNIPATH
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="h3 fw-bold mb-3">Course Transfer Finder</h1>
+                    <p class="mb-0">Find equivalent courses at universities worldwide</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <!-- Course Input Card -->
+                <div class="card course-input-card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3"><i class="fas fa-search me-2"></i>Find Course Equivalencies</h5>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label class="form-label fw-semibold small">Home University</label>
+                                <select class="form-select" id="homeUniversity">
+                                    <option value="">Select your university</option>
+                                    <option value="HKU">The University of Hong Kong (HKU)</option>
+                                    <option value="CUHK">The Chinese University of Hong Kong (CUHK)</option>
+                                    <option value="HKUST">The Hong Kong University of Science and Technology (HKUST)</option>
+                                    <option value="CityU">City University of Hong Kong (CityU)</option>
+                                    <option value="PolyU">The Hong Kong Polytechnic University (PolyU)</option>
+                                    <option value="NUS">National University of Singapore (NUS)</option>
+                                    <option value="UTokyo">University of Tokyo</option>
+                                    <option value="UMelb">University of Melbourne</option>
+                                </select>
+                            </div>
+                            <div class="col-md-5">
+                                <label class="form-label fw-semibold small">Course Codes</label>
+                                <input type="text" class="form-control" id="courseInput" placeholder="e.g. MATH1013, ENGG1330, STAT2601">
+                                <div class="form-text">Enter course codes separated by commas</div>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold small" style="visibility: hidden;">Search</label>
+                                <button class="btn btn-primary w-100" id="searchBtn">
+                                    <i class="fas fa-search me-1"></i>Find Equivalents
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Quick Add Buttons -->
+                        <div class="mt-3">
+                            <small class="text-muted me-2">Quick add HKU courses:</small>
+                            <button class="btn btn-sm btn-outline-secondary me-1" data-courses="MATH1013">MATH1013</button>
+                            <button class="btn btn-sm btn-outline-secondary me-1" data-courses="ENGG1330">ENGG1330</button>
+                            <button class="btn btn-sm btn-outline-secondary me-1" data-courses="STAT2601">STAT2601</button>
+                            <button class="btn btn-sm btn-outline-secondary" data-courses="MATH1013,ENGG1330,STAT2601">All Three</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Initial Placeholder -->
+                <div class="card search-placeholder" id="initialPlaceholder">
+                    <div class="card-body text-center text-muted">
+                        <i class="fas fa-exchange-alt fa-3x mb-3"></i>
+                        <h5>Find Course Equivalencies</h5>
+                        <p class="mb-0">Select your home university, enter course codes, and click "Find Equivalents" to see transfer opportunities.</p>
+                    </div>
+                </div>
+
+                <!-- Results Section -->
+                <div id="resultsSection" style="display: none;">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="mb-0">Transfer Opportunities</h5>
+                        <div class="text-muted small" id="resultsCount"></div>
+                    </div>
+
+                    <!-- University Results -->
+                    <div id="universityResults">
+                        <!-- Results will be populated here by JavaScript -->
+                    </div>
+
+                    <!-- Course Details Table -->
+                    <div class="card mt-4">
+                        <div class="card-header bg-white">
+                            <h6 class="mb-0"><i class="fas fa-list me-1"></i>Detailed Course Equivalencies</h6>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-hover compact-table mb-0" id="courseTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Your Course</th>
+                                            <th>Target University</th>
+                                            <th>Equivalent Course</th>
+                                            <th>Credits</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="courseTableBody">
+                                        <!-- Table rows will be populated here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- No Results Message -->
+                <div id="noResults" class="text-center py-5" style="display: none;">
+                    <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                    <h5 class="text-muted">No transfer opportunities found</h5>
+                    <p class="text-muted">Try different course codes or check back later as we update our database regularly.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Course database for multiple universities
+        const courseDatabase = {
+            "HKU": {
+                "MATH1013": [
+                    {
+                        university: "The Chinese University of Hong Kong (CUHK)",
+                        courseCode: "MATH1030",
+                        courseName: "University Mathematics I",
+                        credits: 3,
+                        status: "Approved",
+                        match: 95
+                    },
+                    {
+                        university: "The Hong Kong University of Science and Technology (HKUST)",
+                        courseCode: "MATH1013",
+                        courseName: "Calculus I",
+                        credits: 3,
+                        status: "Approved",
+                        match: 98
+                    },
+                    {
+                        university: "City University of Hong Kong (CityU)",
+                        courseCode: "MA2170",
+                        courseName: "Calculus and Linear Algebra",
+                        credits: 3,
+                        status: "Approved",
+                        match: 88
+                    }
+                ],
+                "ENGG1330": [
+                    {
+                        university: "The Hong Kong University of Science and Technology (HKUST)",
+                        courseCode: "COMP1021",
+                        courseName: "Introduction to Computer Science",
+                        credits: 3,
+                        status: "Approved",
+                        match: 92
+                    },
+                    {
+                        university: "City University of Hong Kong (CityU)",
+                        courseCode: "CS2311",
+                        courseName: "Computer Programming",
+                        credits: 3,
+                        status: "Approved",
+                        match: 89
+                    }
+                ],
+                "STAT2601": [
+                    {
+                        university: "The Chinese University of Hong Kong (CUHK)",
+                        courseCode: "STAT2001",
+                        courseName: "Basic Concepts in Statistics",
+                        credits: 3,
+                        status: "Approved",
+                        match: 94
+                    },
+                    {
+                        university: "The Hong Kong University of Science and Technology (HKUST)",
+                        courseCode: "ISOM2500",
+                        courseName: "Business Statistics",
+                        credits: 3,
+                        status: "Approved",
+                        match: 90
+                    }
+                ]
+            },
+            "CUHK": {
+                "MATH1030": [
+                    {
+                        university: "The University of Hong Kong (HKU)",
+                        courseCode: "MATH1013",
+                        courseName: "University Mathematics",
+                        credits: 3,
+                        status: "Approved",
+                        match: 95
+                    },
+                    {
+                        university: "The Hong Kong University of Science and Technology (HKUST)",
+                        courseCode: "MATH1013",
+                        courseName: "Calculus I",
+                        credits: 3,
+                        status: "Approved",
+                        match: 92
+                    }
+                ]
+            },
+            "HKUST": {
+                "COMP1021": [
+                    {
+                        university: "The University of Hong Kong (HKU)",
+                        courseCode: "ENGG1330",
+                        courseName: "Computer Programming",
+                        credits: 3,
+                        status: "Approved",
+                        match: 92
+                    },
+                    {
+                        university: "City University of Hong Kong (CityU)",
+                        courseCode: "CS2311",
+                        courseName: "Computer Programming",
+                        credits: 3,
+                        status: "Approved",
+                        match: 88
+                    }
+                ]
+            },
+            "NUS": {
+                "CS1010": [
+                    {
+                        university: "The University of Hong Kong (HKU)",
+                        courseCode: "ENGG1330",
+                        courseName: "Computer Programming",
+                        credits: 4,
+                        status: "Approved",
+                        match: 85
+                    },
+                    {
+                        university: "The Hong Kong University of Science and Technology (HKUST)",
+                        courseCode: "COMP1021",
+                        courseName: "Introduction to Computer Science",
+                        credits: 4,
+                        status: "Pending",
+                        match: 87
+                    }
+                ]
+            }
+        };
+
+        // University information
+        const universityInfo = {
+            "The University of Hong Kong (HKU)": {
+                abbreviation: "HKU",
+                color: "#8B0000"
+            },
+            "The Chinese University of Hong Kong (CUHK)": {
+                abbreviation: "CUHK",
+                color: "#8E0152"
+            },
+            "The Hong Kong University of Science and Technology (HKUST)": {
+                abbreviation: "HKUST",
+                color: "#0047AB"
+            },
+            "City University of Hong Kong (CityU)": {
+                abbreviation: "CityU",
+                color: "#E37222"
+            },
+            "The Hong Kong Polytechnic University (PolyU)": {
+                abbreviation: "PolyU",
+                color: "#8B0000"
+            },
+            "National University of Singapore (NUS)": {
+                abbreviation: "NUS",
+                color: "#FF0000"
+            },
+            "University of Tokyo": {
+                abbreviation: "UTokyo",
+                color: "#800080"
+            },
+            "University of Melbourne": {
+                abbreviation: "UMelb",
+                color: "#002B5C"
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const homeUniversity = document.getElementById('homeUniversity');
+            const courseInput = document.getElementById('courseInput');
+            const searchBtn = document.getElementById('searchBtn');
+            const initialPlaceholder = document.getElementById('initialPlaceholder');
+            const resultsSection = document.getElementById('resultsSection');
+            const noResults = document.getElementById('noResults');
+            const universityResults = document.getElementById('universityResults');
+            const courseTableBody = document.getElementById('courseTableBody');
+            const resultsCount = document.getElementById('resultsCount');
+            
+            // Quick add buttons
+            document.querySelectorAll('[data-courses]').forEach(button => {
+                button.addEventListener('click', function() {
+                    courseInput.value = this.getAttribute('data-courses');
+                });
+            });
+            
+            // Search functionality
+            searchBtn.addEventListener('click', function() {
+                const homeUni = homeUniversity.value;
+                const input = courseInput.value.trim().toUpperCase();
+                
+                if (!homeUni) {
+                    alert('Please select your home university');
+                    return;
+                }
+                
+                if (!input) {
+                    alert('Please enter at least one course code');
+                    return;
+                }
+                
+                // Hide initial placeholder
+                initialPlaceholder.style.display = 'none';
+                
+                // Parse course codes
+                const courseCodes = input.split(',').map(code => code.trim()).filter(code => code);
+                
+                // Find matches
+                const matches = findCourseMatches(homeUni, courseCodes);
+                
+                // Display results
+                displayResults(matches, courseCodes, homeUni);
+            });
+            
+            function findCourseMatches(homeUni, courseCodes) {
+                const universityMatches = {};
+                
+                courseCodes.forEach(courseCode => {
+                    if (courseDatabase[homeUni] && courseDatabase[homeUni][courseCode]) {
+                        courseDatabase[homeUni][courseCode].forEach(transfer => {
+                            if (!universityMatches[transfer.university]) {
+                                universityMatches[transfer.university] = {
+                                    courses: [],
+                                    matchScore: 0
+                                };
+                            }
+                            universityMatches[transfer.university].courses.push({
+                                homeCourse: courseCode,
+                                targetCourse: transfer.courseCode,
+                                targetName: transfer.courseName,
+                                credits: transfer.credits,
+                                status: transfer.status,
+                                individualMatch: transfer.match
+                            });
+                        });
+                    }
+                });
+                
+                // Calculate overall match score for each university
+                Object.keys(universityMatches).forEach(university => {
+                    const courses = universityMatches[university].courses;
+                    const totalMatch = courses.reduce((sum, course) => sum + course.individualMatch, 0);
+                    universityMatches[university].matchScore = Math.round(totalMatch / courses.length);
+                });
+                
+                return universityMatches;
+            }
+            
+            function displayResults(matches, courseCodes, homeUni) {
+                if (Object.keys(matches).length === 0) {
+                    resultsSection.style.display = 'none';
+                    noResults.style.display = 'block';
+                    return;
+                }
+                
+                noResults.style.display = 'none';
+                resultsSection.style.display = 'block';
+                
+                // Update results count
+                const universityCount = Object.keys(matches).length;
+                const courseCount = courseCodes.length;
+                const homeUniName = homeUniversity.options[homeUniversity.selectedIndex].text;
+                resultsCount.textContent = `${universityCount} universities found for ${courseCount} ${homeUniName} course(s)`;
+                
+                // Clear previous results
+                universityResults.innerHTML = '';
+                courseTableBody.innerHTML = '';
+                
+                // Sort universities by match score (highest first)
+                const sortedUniversities = Object.keys(matches).sort((a, b) => {
+                    return matches[b].matchScore - matches[a].matchScore;
+                });
+                
+                // Display university cards
+                sortedUniversities.forEach(university => {
+                    const match = matches[university];
+                    const uniAbbr = universityInfo[university]?.abbreviation || university;
+                    
+                    const card = document.createElement('div');
+                    card.className = 'card university-card';
+                    
+                    let matchClass = 'medium-match';
+                    if (match.matchScore >= 90) matchClass = 'high-match';
+                    if (match.matchScore < 70) matchClass = 'low-match';
+                    
+                    card.innerHTML = `
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h6 class="card-title mb-0">${university}</h6>
+                                <span class="match-badge ${matchClass}">
+                                    ${match.matchScore}% Match
+                                </span>
+                            </div>
+                            <p class="card-text small text-muted mb-2">${uniAbbr}</p>
+                            <div class="mb-2">
+                                ${match.courses.map(course => `
+                                    <span class="badge course-tag me-1">${course.homeCourse} → ${course.targetCourse}</span>
+                                `).join('')}
+                            </div>
+                            <div class="d-flex justify-content-between small text-muted">
+                                <span>${match.courses.length} of ${courseCodes.length} courses matched</span>
+                                <span>${match.courses.filter(c => c.status === 'Approved').length} pre-approved</span>
+                            </div>
+                        </div>
+                    `;
+                    universityResults.appendChild(card);
+                    
+                    // Add rows to course table
+                    match.courses.forEach(course => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${course.homeCourse}</td>
+                            <td>${university}</td>
+                            <td>${course.targetCourse} - ${course.targetName}</td>
+                            <td>${course.credits}</td>
+                            <td>
+                                <span class="badge ${course.status === 'Approved' ? 'bg-success' : 'bg-warning'}">
+                                    ${course.status}
+                                </span>
+                            </td>
+                        `;
+                        courseTableBody.appendChild(row);
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
