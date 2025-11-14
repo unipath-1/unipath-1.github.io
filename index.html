@@ -63,6 +63,35 @@
             align-items: center;
             justify-content: center;
         }
+        .university-logo {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            margin-right: 12px;
+            border-radius: 6px;
+            background: white;
+            padding: 4px;
+            border: 1px solid #dee2e6;
+        }
+        .university-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .logo-placeholder {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            border: 1px solid #dee2e6;
+            color: #6c757d;
+            font-weight: bold;
+            font-size: 12px;
+        }
     </style>
 </head>
 <body>
@@ -70,7 +99,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
             <a class="navbar-brand fw-bold" href="#">
-                <i class="fas fa-exchange-alt me-2"></i>UNIPATH
+                <i class="fas fa-exchange-alt me-2"></i>UniSuccessHub
             </a>
         </div>
     </nav>
@@ -192,6 +221,50 @@
     </div>
 
     <script>
+        // University logos (using official colors and initials as placeholders)
+        const universityLogos = {
+            "The University of Hong Kong (HKU)": {
+                abbreviation: "HKU",
+                color: "#8B0000",
+                logo: "HKU"
+            },
+            "The Chinese University of Hong Kong (CUHK)": {
+                abbreviation: "CUHK",
+                color: "#8E0152",
+                logo: "CUHK"
+            },
+            "The Hong Kong University of Science and Technology (HKUST)": {
+                abbreviation: "HKUST",
+                color: "#0047AB",
+                logo: "HKUST"
+            },
+            "City University of Hong Kong (CityU)": {
+                abbreviation: "CityU",
+                color: "#E37222",
+                logo: "CityU"
+            },
+            "The Hong Kong Polytechnic University (PolyU)": {
+                abbreviation: "PolyU",
+                color: "#8B0000",
+                logo: "PolyU"
+            },
+            "National University of Singapore (NUS)": {
+                abbreviation: "NUS",
+                color: "#FF0000",
+                logo: "NUS"
+            },
+            "University of Tokyo": {
+                abbreviation: "UTokyo",
+                color: "#800080",
+                logo: "UTokyo"
+            },
+            "University of Melbourne": {
+                abbreviation: "UMelb",
+                color: "#002B5C",
+                logo: "UMelb"
+            }
+        };
+
         // Course database for multiple universities
         const courseDatabase = {
             "HKU": {
@@ -219,6 +292,14 @@
                         credits: 3,
                         status: "Approved",
                         match: 88
+                    },
+                    {
+                        university: "National University of Singapore (NUS)",
+                        courseCode: "MA1101R",
+                        courseName: "Linear Algebra",
+                        credits: 4,
+                        status: "Approved",
+                        match: 85
                     }
                 ],
                 "ENGG1330": [
@@ -237,6 +318,14 @@
                         credits: 3,
                         status: "Approved",
                         match: 89
+                    },
+                    {
+                        university: "University of Tokyo",
+                        courseCode: "CS101",
+                        courseName: "Introduction to Programming",
+                        credits: 3,
+                        status: "Pending",
+                        match: 82
                     }
                 ],
                 "STAT2601": [
@@ -255,6 +344,14 @@
                         credits: 3,
                         status: "Approved",
                         match: 90
+                    },
+                    {
+                        university: "University of Melbourne",
+                        courseCode: "MAST10010",
+                        courseName: "Data Analysis",
+                        credits: 3,
+                        status: "Approved",
+                        match: 87
                     }
                 ]
             },
@@ -317,42 +414,6 @@
                         match: 87
                     }
                 ]
-            }
-        };
-
-        // University information
-        const universityInfo = {
-            "The University of Hong Kong (HKU)": {
-                abbreviation: "HKU",
-                color: "#8B0000"
-            },
-            "The Chinese University of Hong Kong (CUHK)": {
-                abbreviation: "CUHK",
-                color: "#8E0152"
-            },
-            "The Hong Kong University of Science and Technology (HKUST)": {
-                abbreviation: "HKUST",
-                color: "#0047AB"
-            },
-            "City University of Hong Kong (CityU)": {
-                abbreviation: "CityU",
-                color: "#E37222"
-            },
-            "The Hong Kong Polytechnic University (PolyU)": {
-                abbreviation: "PolyU",
-                color: "#8B0000"
-            },
-            "National University of Singapore (NUS)": {
-                abbreviation: "NUS",
-                color: "#FF0000"
-            },
-            "University of Tokyo": {
-                abbreviation: "UTokyo",
-                color: "#800080"
-            },
-            "University of Melbourne": {
-                abbreviation: "UMelb",
-                color: "#002B5C"
             }
         };
 
@@ -464,7 +525,7 @@
                 // Display university cards
                 sortedUniversities.forEach(university => {
                     const match = matches[university];
-                    const uniAbbr = universityInfo[university]?.abbreviation || university;
+                    const uniInfo = universityLogos[university];
                     
                     const card = document.createElement('div');
                     card.className = 'card university-card';
@@ -475,16 +536,23 @@
                     
                     card.innerHTML = `
                         <div class="card-body">
-                            <div class="d-flex justify-content-between align-items-start mb-2">
-                                <h6 class="card-title mb-0">${university}</h6>
-                                <span class="match-badge ${matchClass}">
-                                    ${match.matchScore}% Match
-                                </span>
+                            <div class="university-header">
+                                <div class="logo-placeholder" style="background: linear-gradient(45deg, #f8f9fa, ${uniInfo?.color || '#6c757d'}20); color: ${uniInfo?.color || '#6c757d'};">
+                                    ${uniInfo?.logo || uniInfo?.abbreviation || 'UNI'}
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <h6 class="card-title mb-0">${university}</h6>
+                                        <span class="match-badge ${matchClass}">
+                                            ${match.matchScore}% Match
+                                        </span>
+                                    </div>
+                                    <p class="card-text small text-muted mb-0">${uniInfo?.abbreviation || university}</p>
+                                </div>
                             </div>
-                            <p class="card-text small text-muted mb-2">${uniAbbr}</p>
-                            <div class="mb-2">
+                            <div class="mb-2 mt-2">
                                 ${match.courses.map(course => `
-                                    <span class="badge course-tag me-1">${course.homeCourse} → ${course.targetCourse}</span>
+                                    <span class="badge course-tag me-1 mb-1">${course.homeCourse} → ${course.targetCourse}</span>
                                 `).join('')}
                             </div>
                             <div class="d-flex justify-content-between small text-muted">
@@ -500,7 +568,14 @@
                         const row = document.createElement('tr');
                         row.innerHTML = `
                             <td>${course.homeCourse}</td>
-                            <td>${university}</td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="logo-placeholder me-2" style="width: 30px; height: 30px; font-size: 10px; background: linear-gradient(45deg, #f8f9fa, ${uniInfo?.color || '#6c757d'}20); color: ${uniInfo?.color || '#6c757d'};">
+                                        ${uniInfo?.abbreviation?.charAt(0) || 'U'}
+                                    </div>
+                                    ${university}
+                                </div>
+                            </td>
                             <td>${course.targetCourse} - ${course.targetName}</td>
                             <td>${course.credits}</td>
                             <td>
