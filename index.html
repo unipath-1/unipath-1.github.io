@@ -92,6 +92,21 @@
             font-weight: bold;
             font-size: 12px;
         }
+        .simulated-results {
+            background-color: #f8f9fa;
+            border-left: 4px solid #6c757d;
+            padding: 10px 15px;
+            margin-top: 10px;
+            font-size: 0.85rem;
+        }
+        .quick-add-section {
+            border-top: 1px solid #e9ecef;
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+        .university-quick-add {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -152,13 +167,73 @@
                             </div>
                         </div>
                         
-                        <!-- Quick Add Buttons -->
-                        <div class="mt-3">
-                            <small class="text-muted me-2">Quick add HKU courses:</small>
-                            <button class="btn btn-sm btn-outline-secondary me-1" data-courses="MATH1013">MATH1013</button>
-                            <button class="btn btn-sm btn-outline-secondary me-1" data-courses="ENGG1330">ENGG1330</button>
-                            <button class="btn btn-sm btn-outline-secondary me-1" data-courses="STAT2601">STAT2601</button>
-                            <button class="btn btn-sm btn-outline-secondary" data-courses="MATH1013,ENGG1330,STAT2601">All Three</button>
+                        <!-- Quick Add Sections -->
+                        <div class="quick-add-section">
+                            <small class="text-muted me-2 fw-semibold">Quick add courses:</small>
+                            
+                            <!-- HKU Quick Add -->
+                            <div class="university-quick-add" id="HKU-quick-add">
+                                <button class="btn btn-sm btn-outline-secondary me-1" data-courses="MATH1013">MATH1013</button>
+                                <button class="btn btn-sm btn-outline-secondary me-1" data-courses="ENGG1330">ENGG1330</button>
+                                <button class="btn btn-sm btn-outline-secondary me-1" data-courses="STAT2601">STAT2601</button>
+                                <button class="btn btn-sm btn-outline-secondary" data-courses="MATH1013,ENGG1330,STAT2601">All Three</button>
+                            </div>
+                            
+                            <!-- CUHK Quick Add -->
+                            <div class="university-quick-add" id="CUHK-quick-add">
+                                <button class="btn btn-sm btn-outline-secondary me-1" data-courses="MATH1030">MATH1030</button>
+                                <button class="btn btn-sm btn-outline-secondary me-1" data-courses="CSCI1510">CSCI1510</button>
+                                <button class="btn btn-sm btn-outline-secondary me-1" data-courses="STAT2001">STAT2001</button>
+                                <button class="btn btn-sm btn-outline-secondary" data-courses="MATH1030,CSCI1510,STAT2001">All Three</button>
+                            </div>
+                            
+                            <!-- HKUST Quick Add -->
+                            <div class="university-quick-add" id="HKUST-quick-add">
+                                <button class="btn btn-sm btn-outline-secondary me-1" data-courses="MATH1013">MATH1013</button>
+                                <button class="btn btn-sm btn-outline-secondary me-1" data-courses="COMP1021">COMP1021</button>
+                                <button class="btn btn-sm btn-outline-secondary me-1" data-courses="ISOM2500">ISOM2500</button>
+                                <button class="btn btn-sm btn-outline-secondary" data-courses="MATH1013,COMP1021,ISOM2500">All Three</button>
+                            </div>
+                            
+                            <!-- CityU Quick Add -->
+                            <div class="university-quick-add" id="CityU-quick-add">
+                                <button class="btn btn-sm btn-outline-secondary me-1" data-courses="MA2170">MA2170</button>
+                                <button class="btn btn-sm btn-outline-secondary me-1" data-courses="CS2311">CS2311</button>
+                                <button class="btn btn-sm btn-outline-secondary me-1" data-courses="MA2176">MA2176</button>
+                                <button class="btn btn-sm btn-outline-secondary" data-courses="MA2170,CS2311,MA2176">All Three</button>
+                            </div>
+                            
+                            <!-- PolyU Quick Add -->
+                            <div class="university-quick-add" id="PolyU-quick-add">
+                                <button class="btn btn-sm btn-outline-secondary me-1" data-courses="AMA1110">AMA1110</button>
+                                <button class="btn btn-sm btn-outline-secondary me-1" data-courses="COMP1011">COMP1011</button>
+                                <button class="btn btn-sm btn-outline-secondary me-1" data-courses="AMA2111">AMA2111</button>
+                                <button class="btn btn-sm btn-outline-secondary" data-courses="AMA1110,COMP1011,AMA2111">All Three</button>
+                            </div>
+                            
+                            <!-- NUS Quick Add -->
+                            <div class="university-quick-add" id="NUS-quick-add">
+                                <button class="btn btn-sm btn-outline-secondary me-1" data-courses="MA1101R">MA1101R</button>
+                                <button class="btn btn-sm btn-outline-secondary me-1" data-courses="CS1010">CS1010</button>
+                                <button class="btn btn-sm btn-outline-secondary me-1" data-courses="ST1131">ST1131</button>
+                                <button class="btn btn-sm btn-outline-secondary" data-courses="MA1101R,CS1010,ST1131">All Three</button>
+                            </div>
+                            
+                            <!-- UTokyo Quick Add -->
+                            <div class="university-quick-add" id="UTokyo-quick-add">
+                                <button class="btn btn-sm btn-outline-secondary me-1" data-courses="MATH101">MATH101</button>
+                                <button class="btn btn-sm btn-outline-secondary me-1" data-courses="CS101">CS101</button>
+                                <button class="btn btn-sm btn-outline-secondary me-1" data-courses="STAT101">STAT101</button>
+                                <button class="btn btn-sm btn-outline-secondary" data-courses="MATH101,CS101,STAT101">All Three</button>
+                            </div>
+                            
+                            <!-- UMelb Quick Add -->
+                            <div class="university-quick-add" id="UMelb-quick-add">
+                                <button class="btn btn-sm btn-outline-secondary me-1" data-courses="MAST10006">MAST10006</button>
+                                <button class="btn btn-sm btn-outline-secondary me-1" data-courses="COMP10001">COMP10001</button>
+                                <button class="btn btn-sm btn-outline-secondary me-1" data-courses="MAST10010">MAST10010</button>
+                                <button class="btn btn-sm btn-outline-secondary" data-courses="MAST10006,COMP10001,MAST10010">All Three</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -199,6 +274,7 @@
                                             <th>Equivalent Course</th>
                                             <th>Credits</th>
                                             <th>Status</th>
+                                            <th>Match</th>
                                         </tr>
                                     </thead>
                                     <tbody id="courseTableBody">
@@ -300,6 +376,22 @@
                         credits: 4,
                         status: "Approved",
                         match: 85
+                    },
+                    {
+                        university: "University of Tokyo",
+                        courseCode: "MATH101",
+                        courseName: "Calculus I",
+                        credits: 3,
+                        status: "Pending",
+                        match: 82
+                    },
+                    {
+                        university: "University of Melbourne",
+                        courseCode: "MAST10006",
+                        courseName: "Calculus 1",
+                        credits: 3,
+                        status: "Approved",
+                        match: 87
                     }
                 ],
                 "ENGG1330": [
@@ -326,6 +418,30 @@
                         credits: 3,
                         status: "Pending",
                         match: 82
+                    },
+                    {
+                        university: "National University of Singapore (NUS)",
+                        courseCode: "CS1010",
+                        courseName: "Programming Methodology",
+                        credits: 4,
+                        status: "Approved",
+                        match: 85
+                    },
+                    {
+                        university: "The Chinese University of Hong Kong (CUHK)",
+                        courseCode: "CSCI1510",
+                        courseName: "Computer Programming",
+                        credits: 3,
+                        status: "Approved",
+                        match: 88
+                    },
+                    {
+                        university: "University of Melbourne",
+                        courseCode: "COMP10001",
+                        courseName: "Foundations of Computing",
+                        credits: 3,
+                        status: "Approved",
+                        match: 84
                     }
                 ],
                 "STAT2601": [
@@ -352,6 +468,30 @@
                         credits: 3,
                         status: "Approved",
                         match: 87
+                    },
+                    {
+                        university: "National University of Singapore (NUS)",
+                        courseCode: "ST1131",
+                        courseName: "Introduction to Statistics",
+                        credits: 4,
+                        status: "Approved",
+                        match: 89
+                    },
+                    {
+                        university: "City University of Hong Kong (CityU)",
+                        courseCode: "MA2176",
+                        courseName: "Probability and Statistics",
+                        credits: 3,
+                        status: "Approved",
+                        match: 86
+                    },
+                    {
+                        university: "University of Tokyo",
+                        courseCode: "STAT101",
+                        courseName: "Introduction to Statistics",
+                        credits: 3,
+                        status: "Pending",
+                        match: 83
                     }
                 ]
             },
@@ -372,10 +512,192 @@
                         credits: 3,
                         status: "Approved",
                         match: 92
+                    },
+                    {
+                        university: "City University of Hong Kong (CityU)",
+                        courseCode: "MA2170",
+                        courseName: "Calculus and Linear Algebra",
+                        credits: 3,
+                        status: "Approved",
+                        match: 88
+                    },
+                    {
+                        university: "National University of Singapore (NUS)",
+                        courseCode: "MA1101R",
+                        courseName: "Linear Algebra",
+                        credits: 4,
+                        status: "Approved",
+                        match: 85
+                    },
+                    {
+                        university: "University of Tokyo",
+                        courseCode: "MATH101",
+                        courseName: "Calculus I",
+                        credits: 3,
+                        status: "Pending",
+                        match: 82
+                    },
+                    {
+                        university: "University of Melbourne",
+                        courseCode: "MAST10006",
+                        courseName: "Calculus 1",
+                        credits: 3,
+                        status: "Approved",
+                        match: 87
+                    }
+                ],
+                "CSCI1510": [
+                    {
+                        university: "The University of Hong Kong (HKU)",
+                        courseCode: "ENGG1330",
+                        courseName: "Computer Programming",
+                        credits: 3,
+                        status: "Approved",
+                        match: 88
+                    },
+                    {
+                        university: "The Hong Kong University of Science and Technology (HKUST)",
+                        courseCode: "COMP1021",
+                        courseName: "Introduction to Computer Science",
+                        credits: 3,
+                        status: "Approved",
+                        match: 90
+                    },
+                    {
+                        university: "City University of Hong Kong (CityU)",
+                        courseCode: "CS2311",
+                        courseName: "Computer Programming",
+                        credits: 3,
+                        status: "Approved",
+                        match: 89
+                    },
+                    {
+                        university: "National University of Singapore (NUS)",
+                        courseCode: "CS1010",
+                        courseName: "Programming Methodology",
+                        credits: 4,
+                        status: "Approved",
+                        match: 86
+                    },
+                    {
+                        university: "University of Tokyo",
+                        courseCode: "CS101",
+                        courseName: "Introduction to Programming",
+                        credits: 3,
+                        status: "Pending",
+                        match: 82
+                    },
+                    {
+                        university: "University of Melbourne",
+                        courseCode: "COMP10001",
+                        courseName: "Foundations of Computing",
+                        credits: 3,
+                        status: "Approved",
+                        match: 85
+                    }
+                ],
+                "STAT2001": [
+                    {
+                        university: "The University of Hong Kong (HKU)",
+                        courseCode: "STAT2601",
+                        courseName: "Probability and Statistics",
+                        credits: 3,
+                        status: "Approved",
+                        match: 94
+                    },
+                    {
+                        university: "The Hong Kong University of Science and Technology (HKUST)",
+                        courseCode: "ISOM2500",
+                        courseName: "Business Statistics",
+                        credits: 3,
+                        status: "Approved",
+                        match: 91
+                    },
+                    {
+                        university: "City University of Hong Kong (CityU)",
+                        courseCode: "MA2176",
+                        courseName: "Probability and Statistics",
+                        credits: 3,
+                        status: "Approved",
+                        match: 89
+                    },
+                    {
+                        university: "National University of Singapore (NUS)",
+                        courseCode: "ST1131",
+                        courseName: "Introduction to Statistics",
+                        credits: 4,
+                        status: "Approved",
+                        match: 88
+                    },
+                    {
+                        university: "University of Tokyo",
+                        courseCode: "STAT101",
+                        courseName: "Introduction to Statistics",
+                        credits: 3,
+                        status: "Pending",
+                        match: 83
+                    },
+                    {
+                        university: "University of Melbourne",
+                        courseCode: "MAST10010",
+                        courseName: "Data Analysis",
+                        credits: 3,
+                        status: "Approved",
+                        match: 87
                     }
                 ]
             },
             "HKUST": {
+                "MATH1013": [
+                    {
+                        university: "The University of Hong Kong (HKU)",
+                        courseCode: "MATH1013",
+                        courseName: "University Mathematics",
+                        credits: 3,
+                        status: "Approved",
+                        match: 98
+                    },
+                    {
+                        university: "The Chinese University of Hong Kong (CUHK)",
+                        courseCode: "MATH1030",
+                        courseName: "University Mathematics I",
+                        credits: 3,
+                        status: "Approved",
+                        match: 92
+                    },
+                    {
+                        university: "City University of Hong Kong (CityU)",
+                        courseCode: "MA2170",
+                        courseName: "Calculus and Linear Algebra",
+                        credits: 3,
+                        status: "Approved",
+                        match: 87
+                    },
+                    {
+                        university: "National University of Singapore (NUS)",
+                        courseCode: "MA1101R",
+                        courseName: "Linear Algebra",
+                        credits: 4,
+                        status: "Approved",
+                        match: 84
+                    },
+                    {
+                        university: "University of Tokyo",
+                        courseCode: "MATH101",
+                        courseName: "Calculus I",
+                        credits: 3,
+                        status: "Pending",
+                        match: 81
+                    },
+                    {
+                        university: "University of Melbourne",
+                        courseCode: "MAST10006",
+                        courseName: "Calculus 1",
+                        credits: 3,
+                        status: "Approved",
+                        match: 86
+                    }
+                ],
                 "COMP1021": [
                     {
                         university: "The University of Hong Kong (HKU)",
@@ -392,10 +714,446 @@
                         credits: 3,
                         status: "Approved",
                         match: 88
+                    },
+                    {
+                        university: "National University of Singapore (NUS)",
+                        courseCode: "CS1010",
+                        courseName: "Programming Methodology",
+                        credits: 4,
+                        status: "Approved",
+                        match: 85
+                    },
+                    {
+                        university: "The Chinese University of Hong Kong (CUHK)",
+                        courseCode: "CSCI1510",
+                        courseName: "Computer Programming",
+                        credits: 3,
+                        status: "Approved",
+                        match: 88
+                    },
+                    {
+                        university: "University of Melbourne",
+                        courseCode: "COMP10001",
+                        courseName: "Foundations of Computing",
+                        credits: 3,
+                        status: "Approved",
+                        match: 84
+                    },
+                    {
+                        university: "University of Tokyo",
+                        courseCode: "CS101",
+                        courseName: "Introduction to Programming",
+                        credits: 3,
+                        status: "Pending",
+                        match: 82
+                    }
+                ],
+                "ISOM2500": [
+                    {
+                        university: "The University of Hong Kong (HKU)",
+                        courseCode: "STAT2601",
+                        courseName: "Probability and Statistics",
+                        credits: 3,
+                        status: "Approved",
+                        match: 90
+                    },
+                    {
+                        university: "The Chinese University of Hong Kong (CUHK)",
+                        courseCode: "STAT2001",
+                        courseName: "Basic Concepts in Statistics",
+                        credits: 3,
+                        status: "Approved",
+                        match: 91
+                    },
+                    {
+                        university: "City University of Hong Kong (CityU)",
+                        courseCode: "MA2176",
+                        courseName: "Probability and Statistics",
+                        credits: 3,
+                        status: "Approved",
+                        match: 87
+                    },
+                    {
+                        university: "National University of Singapore (NUS)",
+                        courseCode: "ST1131",
+                        courseName: "Introduction to Statistics",
+                        credits: 4,
+                        status: "Approved",
+                        match: 86
+                    },
+                    {
+                        university: "University of Tokyo",
+                        courseCode: "STAT101",
+                        courseName: "Introduction to Statistics",
+                        credits: 3,
+                        status: "Pending",
+                        match: 82
+                    },
+                    {
+                        university: "University of Melbourne",
+                        courseCode: "MAST10010",
+                        courseName: "Data Analysis",
+                        credits: 3,
+                        status: "Approved",
+                        match: 85
+                    }
+                ]
+            },
+            "CityU": {
+                "MA2170": [
+                    {
+                        university: "The University of Hong Kong (HKU)",
+                        courseCode: "MATH1013",
+                        courseName: "University Mathematics",
+                        credits: 3,
+                        status: "Approved",
+                        match: 88
+                    },
+                    {
+                        university: "The Chinese University of Hong Kong (CUHK)",
+                        courseCode: "MATH1030",
+                        courseName: "University Mathematics I",
+                        credits: 3,
+                        status: "Approved",
+                        match: 87
+                    },
+                    {
+                        university: "The Hong Kong University of Science and Technology (HKUST)",
+                        courseCode: "MATH1013",
+                        courseName: "Calculus I",
+                        credits: 3,
+                        status: "Approved",
+                        match: 87
+                    },
+                    {
+                        university: "National University of Singapore (NUS)",
+                        courseCode: "MA1101R",
+                        courseName: "Linear Algebra",
+                        credits: 4,
+                        status: "Approved",
+                        match: 83
+                    },
+                    {
+                        university: "University of Tokyo",
+                        courseCode: "MATH101",
+                        courseName: "Calculus I",
+                        credits: 3,
+                        status: "Pending",
+                        match: 80
+                    },
+                    {
+                        university: "University of Melbourne",
+                        courseCode: "MAST10006",
+                        courseName: "Calculus 1",
+                        credits: 3,
+                        status: "Approved",
+                        match: 84
+                    }
+                ],
+                "CS2311": [
+                    {
+                        university: "The University of Hong Kong (HKU)",
+                        courseCode: "ENGG1330",
+                        courseName: "Computer Programming",
+                        credits: 3,
+                        status: "Approved",
+                        match: 89
+                    },
+                    {
+                        university: "The Hong Kong University of Science and Technology (HKUST)",
+                        courseCode: "COMP1021",
+                        courseName: "Introduction to Computer Science",
+                        credits: 3,
+                        status: "Approved",
+                        match: 88
+                    },
+                    {
+                        university: "National University of Singapore (NUS)",
+                        courseCode: "CS1010",
+                        courseName: "Programming Methodology",
+                        credits: 4,
+                        status: "Approved",
+                        match: 86
+                    },
+                    {
+                        university: "The Chinese University of Hong Kong (CUHK)",
+                        courseCode: "CSCI1510",
+                        courseName: "Computer Programming",
+                        credits: 3,
+                        status: "Approved",
+                        match: 87
+                    },
+                    {
+                        university: "University of Melbourne",
+                        courseCode: "COMP10001",
+                        courseName: "Foundations of Computing",
+                        credits: 3,
+                        status: "Approved",
+                        match: 84
+                    },
+                    {
+                        university: "University of Tokyo",
+                        courseCode: "CS101",
+                        courseName: "Introduction to Programming",
+                        credits: 3,
+                        status: "Pending",
+                        match: 82
+                    }
+                ],
+                "MA2176": [
+                    {
+                        university: "The University of Hong Kong (HKU)",
+                        courseCode: "STAT2601",
+                        courseName: "Probability and Statistics",
+                        credits: 3,
+                        status: "Approved",
+                        match: 86
+                    },
+                    {
+                        university: "The Chinese University of Hong Kong (CUHK)",
+                        courseCode: "STAT2001",
+                        courseName: "Basic Concepts in Statistics",
+                        credits: 3,
+                        status: "Approved",
+                        match: 89
+                    },
+                    {
+                        university: "The Hong Kong University of Science and Technology (HKUST)",
+                        courseCode: "ISOM2500",
+                        courseName: "Business Statistics",
+                        credits: 3,
+                        status: "Approved",
+                        match: 87
+                    },
+                    {
+                        university: "National University of Singapore (NUS)",
+                        courseCode: "ST1131",
+                        courseName: "Introduction to Statistics",
+                        credits: 4,
+                        status: "Approved",
+                        match: 85
+                    },
+                    {
+                        university: "University of Tokyo",
+                        courseCode: "STAT101",
+                        courseName: "Introduction to Statistics",
+                        credits: 3,
+                        status: "Pending",
+                        match: 81
+                    },
+                    {
+                        university: "University of Melbourne",
+                        courseCode: "MAST10010",
+                        courseName: "Data Analysis",
+                        credits: 3,
+                        status: "Approved",
+                        match: 84
+                    }
+                ]
+            },
+            "PolyU": {
+                "AMA1110": [
+                    {
+                        university: "The University of Hong Kong (HKU)",
+                        courseCode: "MATH1013",
+                        courseName: "University Mathematics",
+                        credits: 3,
+                        status: "Approved",
+                        match: 85
+                    },
+                    {
+                        university: "The Chinese University of Hong Kong (CUHK)",
+                        courseCode: "MATH1030",
+                        courseName: "University Mathematics I",
+                        credits: 3,
+                        status: "Approved",
+                        match: 87
+                    },
+                    {
+                        university: "The Hong Kong University of Science and Technology (HKUST)",
+                        courseCode: "MATH1013",
+                        courseName: "Calculus I",
+                        credits: 3,
+                        status: "Approved",
+                        match: 86
+                    },
+                    {
+                        university: "National University of Singapore (NUS)",
+                        courseCode: "MA1101R",
+                        courseName: "Linear Algebra",
+                        credits: 4,
+                        status: "Approved",
+                        match: 84
+                    },
+                    {
+                        university: "University of Tokyo",
+                        courseCode: "MATH101",
+                        courseName: "Calculus I",
+                        credits: 3,
+                        status: "Pending",
+                        match: 81
+                    },
+                    {
+                        university: "University of Melbourne",
+                        courseCode: "MAST10006",
+                        courseName: "Calculus 1",
+                        credits: 3,
+                        status: "Approved",
+                        match: 83
+                    }
+                ],
+                "COMP1011": [
+                    {
+                        university: "The University of Hong Kong (HKU)",
+                        courseCode: "ENGG1330",
+                        courseName: "Computer Programming",
+                        credits: 3,
+                        status: "Approved",
+                        match: 87
+                    },
+                    {
+                        university: "The Hong Kong University of Science and Technology (HKUST)",
+                        courseCode: "COMP1021",
+                        courseName: "Introduction to Computer Science",
+                        credits: 3,
+                        status: "Approved",
+                        match: 86
+                    },
+                    {
+                        university: "City University of Hong Kong (CityU)",
+                        courseCode: "CS2311",
+                        courseName: "Computer Programming",
+                        credits: 3,
+                        status: "Approved",
+                        match: 88
+                    },
+                    {
+                        university: "National University of Singapore (NUS)",
+                        courseCode: "CS1010",
+                        courseName: "Programming Methodology",
+                        credits: 4,
+                        status: "Approved",
+                        match: 85
+                    },
+                    {
+                        university: "The Chinese University of Hong Kong (CUHK)",
+                        courseCode: "CSCI1510",
+                        courseName: "Computer Programming",
+                        credits: 3,
+                        status: "Approved",
+                        match: 86
+                    },
+                    {
+                        university: "University of Melbourne",
+                        courseCode: "COMP10001",
+                        courseName: "Foundations of Computing",
+                        credits: 3,
+                        status: "Approved",
+                        match: 83
+                    }
+                ],
+                "AMA2111": [
+                    {
+                        university: "The University of Hong Kong (HKU)",
+                        courseCode: "STAT2601",
+                        courseName: "Probability and Statistics",
+                        credits: 3,
+                        status: "Approved",
+                        match: 84
+                    },
+                    {
+                        university: "The Chinese University of Hong Kong (CUHK)",
+                        courseCode: "STAT2001",
+                        courseName: "Basic Concepts in Statistics",
+                        credits: 3,
+                        status: "Approved",
+                        match: 86
+                    },
+                    {
+                        university: "The Hong Kong University of Science and Technology (HKUST)",
+                        courseCode: "ISOM2500",
+                        courseName: "Business Statistics",
+                        credits: 3,
+                        status: "Approved",
+                        match: 85
+                    },
+                    {
+                        university: "City University of Hong Kong (CityU)",
+                        courseCode: "MA2176",
+                        courseName: "Probability and Statistics",
+                        credits: 3,
+                        status: "Approved",
+                        match: 87
+                    },
+                    {
+                        university: "National University of Singapore (NUS)",
+                        courseCode: "ST1131",
+                        courseName: "Introduction to Statistics",
+                        credits: 4,
+                        status: "Approved",
+                        match: 83
+                    },
+                    {
+                        university: "University of Melbourne",
+                        courseCode: "MAST10010",
+                        courseName: "Data Analysis",
+                        credits: 3,
+                        status: "Approved",
+                        match: 82
                     }
                 ]
             },
             "NUS": {
+                "MA1101R": [
+                    {
+                        university: "The University of Hong Kong (HKU)",
+                        courseCode: "MATH1013",
+                        courseName: "University Mathematics",
+                        credits: 4,
+                        status: "Approved",
+                        match: 85
+                    },
+                    {
+                        university: "The Chinese University of Hong Kong (CUHK)",
+                        courseCode: "MATH1030",
+                        courseName: "University Mathematics I",
+                        credits: 4,
+                        status: "Approved",
+                        match: 86
+                    },
+                    {
+                        university: "The Hong Kong University of Science and Technology (HKUST)",
+                        courseCode: "MATH1013",
+                        courseName: "Calculus I",
+                        credits: 4,
+                        status: "Approved",
+                        match: 84
+                    },
+                    {
+                        university: "City University of Hong Kong (CityU)",
+                        courseCode: "MA2170",
+                        courseName: "Calculus and Linear Algebra",
+                        credits: 4,
+                        status: "Approved",
+                        match: 83
+                    },
+                    {
+                        university: "University of Tokyo",
+                        courseCode: "MATH101",
+                        courseName: "Calculus I",
+                        credits: 4,
+                        status: "Pending",
+                        match: 81
+                    },
+                    {
+                        university: "University of Melbourne",
+                        courseCode: "MAST10006",
+                        courseName: "Calculus 1",
+                        credits: 4,
+                        status: "Approved",
+                        match: 84
+                    }
+                ],
                 "CS1010": [
                     {
                         university: "The University of Hong Kong (HKU)",
@@ -412,6 +1170,392 @@
                         credits: 4,
                         status: "Pending",
                         match: 87
+                    },
+                    {
+                        university: "City University of Hong Kong (CityU)",
+                        courseCode: "CS2311",
+                        courseName: "Computer Programming",
+                        credits: 4,
+                        status: "Approved",
+                        match: 86
+                    },
+                    {
+                        university: "The Chinese University of Hong Kong (CUHK)",
+                        courseCode: "CSCI1510",
+                        courseName: "Computer Programming",
+                        credits: 4,
+                        status: "Approved",
+                        match: 84
+                    },
+                    {
+                        university: "University of Melbourne",
+                        courseCode: "COMP10001",
+                        courseName: "Foundations of Computing",
+                        credits: 4,
+                        status: "Approved",
+                        match: 83
+                    },
+                    {
+                        university: "University of Tokyo",
+                        courseCode: "CS101",
+                        courseName: "Introduction to Programming",
+                        credits: 4,
+                        status: "Pending",
+                        match: 81
+                    }
+                ],
+                "ST1131": [
+                    {
+                        university: "The University of Hong Kong (HKU)",
+                        courseCode: "STAT2601",
+                        courseName: "Probability and Statistics",
+                        credits: 4,
+                        status: "Approved",
+                        match: 89
+                    },
+                    {
+                        university: "The Chinese University of Hong Kong (CUHK)",
+                        courseCode: "STAT2001",
+                        courseName: "Basic Concepts in Statistics",
+                        credits: 4,
+                        status: "Approved",
+                        match: 88
+                    },
+                    {
+                        university: "The Hong Kong University of Science and Technology (HKUST)",
+                        courseCode: "ISOM2500",
+                        courseName: "Business Statistics",
+                        credits: 4,
+                        status: "Approved",
+                        match: 86
+                    },
+                    {
+                        university: "City University of Hong Kong (CityU)",
+                        courseCode: "MA2176",
+                        courseName: "Probability and Statistics",
+                        credits: 4,
+                        status: "Approved",
+                        match: 85
+                    },
+                    {
+                        university: "University of Tokyo",
+                        courseCode: "STAT101",
+                        courseName: "Introduction to Statistics",
+                        credits: 4,
+                        status: "Pending",
+                        match: 82
+                    },
+                    {
+                        university: "University of Melbourne",
+                        courseCode: "MAST10010",
+                        courseName: "Data Analysis",
+                        credits: 4,
+                        status: "Approved",
+                        match: 87
+                    }
+                ]
+            },
+            "UTokyo": {
+                "MATH101": [
+                    {
+                        university: "The University of Hong Kong (HKU)",
+                        courseCode: "MATH1013",
+                        courseName: "University Mathematics",
+                        credits: 3,
+                        status: "Pending",
+                        match: 82
+                    },
+                    {
+                        university: "The Chinese University of Hong Kong (CUHK)",
+                        courseCode: "MATH1030",
+                        courseName: "University Mathematics I",
+                        credits: 3,
+                        status: "Pending",
+                        match: 83
+                    },
+                    {
+                        university: "The Hong Kong University of Science and Technology (HKUST)",
+                        courseCode: "MATH1013",
+                        courseName: "Calculus I",
+                        credits: 3,
+                        status: "Pending",
+                        match: 84
+                    },
+                    {
+                        university: "National University of Singapore (NUS)",
+                        courseCode: "MA1101R",
+                        courseName: "Linear Algebra",
+                        credits: 3,
+                        status: "Pending",
+                        match: 81
+                    },
+                    {
+                        university: "City University of Hong Kong (CityU)",
+                        courseCode: "MA2170",
+                        courseName: "Calculus and Linear Algebra",
+                        credits: 3,
+                        status: "Pending",
+                        match: 82
+                    },
+                    {
+                        university: "University of Melbourne",
+                        courseCode: "MAST10006",
+                        courseName: "Calculus 1",
+                        credits: 3,
+                        status: "Pending",
+                        match: 83
+                    }
+                ],
+                "CS101": [
+                    {
+                        university: "The University of Hong Kong (HKU)",
+                        courseCode: "ENGG1330",
+                        courseName: "Computer Programming",
+                        credits: 3,
+                        status: "Pending",
+                        match: 82
+                    },
+                    {
+                        university: "The Hong Kong University of Science and Technology (HKUST)",
+                        courseCode: "COMP1021",
+                        courseName: "Introduction to Computer Science",
+                        credits: 3,
+                        status: "Pending",
+                        match: 83
+                    },
+                    {
+                        university: "City University of Hong Kong (CityU)",
+                        courseCode: "CS2311",
+                        courseName: "Computer Programming",
+                        credits: 3,
+                        status: "Pending",
+                        match: 82
+                    },
+                    {
+                        university: "National University of Singapore (NUS)",
+                        courseCode: "CS1010",
+                        courseName: "Programming Methodology",
+                        credits: 3,
+                        status: "Pending",
+                        match: 81
+                    },
+                    {
+                        university: "The Chinese University of Hong Kong (CUHK)",
+                        courseCode: "CSCI1510",
+                        courseName: "Computer Programming",
+                        credits: 3,
+                        status: "Pending",
+                        match: 82
+                    },
+                    {
+                        university: "University of Melbourne",
+                        courseCode: "COMP10001",
+                        courseName: "Foundations of Computing",
+                        credits: 3,
+                        status: "Pending",
+                        match: 81
+                    }
+                ],
+                "STAT101": [
+                    {
+                        university: "The University of Hong Kong (HKU)",
+                        courseCode: "STAT2601",
+                        courseName: "Probability and Statistics",
+                        credits: 3,
+                        status: "Pending",
+                        match: 83
+                    },
+                    {
+                        university: "The Chinese University of Hong Kong (CUHK)",
+                        courseCode: "STAT2001",
+                        courseName: "Basic Concepts in Statistics",
+                        credits: 3,
+                        status: "Pending",
+                        match: 83
+                    },
+                    {
+                        university: "The Hong Kong University of Science and Technology (HKUST)",
+                        courseCode: "ISOM2500",
+                        courseName: "Business Statistics",
+                        credits: 3,
+                        status: "Pending",
+                        match: 82
+                    },
+                    {
+                        university: "National University of Singapore (NUS)",
+                        courseCode: "ST1131",
+                        courseName: "Introduction to Statistics",
+                        credits: 3,
+                        status: "Pending",
+                        match: 82
+                    },
+                    {
+                        university: "City University of Hong Kong (CityU)",
+                        courseCode: "MA2176",
+                        courseName: "Probability and Statistics",
+                        credits: 3,
+                        status: "Pending",
+                        match: 81
+                    },
+                    {
+                        university: "University of Melbourne",
+                        courseCode: "MAST10010",
+                        courseName: "Data Analysis",
+                        credits: 3,
+                        status: "Pending",
+                        match: 82
+                    }
+                ]
+            },
+            "UMelb": {
+                "MAST10006": [
+                    {
+                        university: "The University of Hong Kong (HKU)",
+                        courseCode: "MATH1013",
+                        courseName: "University Mathematics",
+                        credits: 3,
+                        status: "Approved",
+                        match: 87
+                    },
+                    {
+                        university: "The Chinese University of Hong Kong (CUHK)",
+                        courseCode: "MATH1030",
+                        courseName: "University Mathematics I",
+                        credits: 3,
+                        status: "Approved",
+                        match: 86
+                    },
+                    {
+                        university: "The Hong Kong University of Science and Technology (HKUST)",
+                        courseCode: "MATH1013",
+                        courseName: "Calculus I",
+                        credits: 3,
+                        status: "Approved",
+                        match: 85
+                    },
+                    {
+                        university: "National University of Singapore (NUS)",
+                        courseCode: "MA1101R",
+                        courseName: "Linear Algebra",
+                        credits: 3,
+                        status: "Approved",
+                        match: 84
+                    },
+                    {
+                        university: "City University of Hong Kong (CityU)",
+                        courseCode: "MA2170",
+                        courseName: "Calculus and Linear Algebra",
+                        credits: 3,
+                        status: "Approved",
+                        match: 83
+                    },
+                    {
+                        university: "University of Tokyo",
+                        courseCode: "MATH101",
+                        courseName: "Calculus I",
+                        credits: 3,
+                        status: "Pending",
+                        match: 82
+                    }
+                ],
+                "COMP10001": [
+                    {
+                        university: "The University of Hong Kong (HKU)",
+                        courseCode: "ENGG1330",
+                        courseName: "Computer Programming",
+                        credits: 3,
+                        status: "Approved",
+                        match: 84
+                    },
+                    {
+                        university: "The Hong Kong University of Science and Technology (HKUST)",
+                        courseCode: "COMP1021",
+                        courseName: "Introduction to Computer Science",
+                        credits: 3,
+                        status: "Approved",
+                        match: 84
+                    },
+                    {
+                        university: "City University of Hong Kong (CityU)",
+                        courseCode: "CS2311",
+                        courseName: "Computer Programming",
+                        credits: 3,
+                        status: "Approved",
+                        match: 84
+                    },
+                    {
+                        university: "National University of Singapore (NUS)",
+                        courseCode: "CS1010",
+                        courseName: "Programming Methodology",
+                        credits: 3,
+                        status: "Approved",
+                        match: 83
+                    },
+                    {
+                        university: "The Chinese University of Hong Kong (CUHK)",
+                        courseCode: "CSCI1510",
+                        courseName: "Computer Programming",
+                        credits: 3,
+                        status: "Approved",
+                        match: 85
+                    },
+                    {
+                        university: "University of Tokyo",
+                        courseCode: "CS101",
+                        courseName: "Introduction to Programming",
+                        credits: 3,
+                        status: "Pending",
+                        match: 81
+                    }
+                ],
+                "MAST10010": [
+                    {
+                        university: "The University of Hong Kong (HKU)",
+                        courseCode: "STAT2601",
+                        courseName: "Probability and Statistics",
+                        credits: 3,
+                        status: "Approved",
+                        match: 87
+                    },
+                    {
+                        university: "The Chinese University of Hong Kong (CUHK)",
+                        courseCode: "STAT2001",
+                        courseName: "Basic Concepts in Statistics",
+                        credits: 3,
+                        status: "Approved",
+                        match: 87
+                    },
+                    {
+                        university: "The Hong Kong University of Science and Technology (HKUST)",
+                        courseCode: "ISOM2500",
+                        courseName: "Business Statistics",
+                        credits: 3,
+                        status: "Approved",
+                        match: 85
+                    },
+                    {
+                        university: "National University of Singapore (NUS)",
+                        courseCode: "ST1131",
+                        courseName: "Introduction to Statistics",
+                        credits: 3,
+                        status: "Approved",
+                        match: 87
+                    },
+                    {
+                        university: "City University of Hong Kong (CityU)",
+                        courseCode: "MA2176",
+                        courseName: "Probability and Statistics",
+                        credits: 3,
+                        status: "Approved",
+                        match: 84
+                    },
+                    {
+                        university: "University of Tokyo",
+                        courseCode: "STAT101",
+                        courseName: "Introduction to Statistics",
+                        credits: 3,
+                        status: "Pending",
+                        match: 82
                     }
                 ]
             }
@@ -427,6 +1571,23 @@
             const universityResults = document.getElementById('universityResults');
             const courseTableBody = document.getElementById('courseTableBody');
             const resultsCount = document.getElementById('resultsCount');
+            
+            // Show/hide quick add buttons based on selected university
+            homeUniversity.addEventListener('change', function() {
+                // Hide all quick add sections
+                document.querySelectorAll('.university-quick-add').forEach(section => {
+                    section.style.display = 'none';
+                });
+                
+                // Show the quick add section for the selected university
+                const selectedUni = this.value;
+                if (selectedUni) {
+                    const quickAddSection = document.getElementById(`${selectedUni}-quick-add`);
+                    if (quickAddSection) {
+                        quickAddSection.style.display = 'block';
+                    }
+                }
+            });
             
             // Quick add buttons
             document.querySelectorAll('[data-courses]').forEach(button => {
@@ -466,13 +1627,15 @@
             function findCourseMatches(homeUni, courseCodes) {
                 const universityMatches = {};
                 
+                // Find actual matches from database
                 courseCodes.forEach(courseCode => {
                     if (courseDatabase[homeUni] && courseDatabase[homeUni][courseCode]) {
                         courseDatabase[homeUni][courseCode].forEach(transfer => {
                             if (!universityMatches[transfer.university]) {
                                 universityMatches[transfer.university] = {
                                     courses: [],
-                                    matchScore: 0
+                                    matchScore: 0,
+                                    simulated: false
                                 };
                             }
                             universityMatches[transfer.university].courses.push({
@@ -481,13 +1644,14 @@
                                 targetName: transfer.courseName,
                                 credits: transfer.credits,
                                 status: transfer.status,
-                                individualMatch: transfer.match
+                                individualMatch: transfer.match,
+                                simulated: false
                             });
                         });
                     }
                 });
                 
-                // Calculate overall match score for each university
+                // Calculate overall match score for each university with actual data
                 Object.keys(universityMatches).forEach(university => {
                     const courses = universityMatches[university].courses;
                     const totalMatch = courses.reduce((sum, course) => sum + course.individualMatch, 0);
@@ -566,6 +1730,10 @@
                     // Add rows to course table
                     match.courses.forEach(course => {
                         const row = document.createElement('tr');
+                        let matchClass = 'medium-match';
+                        if (course.individualMatch >= 90) matchClass = 'high-match';
+                        if (course.individualMatch < 70) matchClass = 'low-match';
+                        
                         row.innerHTML = `
                             <td>${course.homeCourse}</td>
                             <td>
@@ -579,8 +1747,13 @@
                             <td>${course.targetCourse} - ${course.targetName}</td>
                             <td>${course.credits}</td>
                             <td>
-                                <span class="badge ${course.status === 'Approved' ? 'bg-success' : 'bg-warning'}">
+                                <span class="badge ${course.status === 'Approved' ? 'bg-success' : course.status === 'Simulated' ? 'bg-secondary' : 'bg-warning'}">
                                     ${course.status}
+                                </span>
+                            </td>
+                            <td>
+                                <span class="match-badge ${matchClass}">
+                                    ${course.individualMatch}%
                                 </span>
                             </td>
                         `;
