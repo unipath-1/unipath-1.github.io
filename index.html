@@ -107,6 +107,38 @@
         .university-quick-add {
             display: none;
         }
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .chatbot-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #3498db;
+            color: white;
+            border: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .chatbot-window {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 350px;
+            height: 400px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            display: none;
+            flex-direction: column;
+            border: 1px solid #ddd;
+        }
     </style>
 </head>
 <body>
@@ -296,6 +328,15 @@
         </div>
     </div>
 
+    <div class="chatbot-container">
+        <div class="chatbot-window" id="chatbotWindow">
+            <!-- Chat content will go here -->
+        </div>
+        <button class="chatbot-button" id="chatbotButton">
+            <i class="fas fa-robot"></i>
+        </button>
+    </div>
+        
     <script>
         // University logos (using official colors and initials as placeholders)
         const universityLogos = {
@@ -1776,6 +1817,14 @@
                     });
                 });
             }
+        });
+
+        // Chatbot functionality
+        const chatbotButton = document.getElementById('chatbotButton');
+        const chatbotWindow = document.getElementById('chatbotWindow');
+        
+        chatbotButton.addEventListener('click', function() {
+            chatbotWindow.style.display = chatbotWindow.style.display === 'flex' ? 'none' : 'flex';
         });
     </script>
 </body>
