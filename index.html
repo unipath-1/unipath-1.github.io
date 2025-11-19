@@ -1592,7 +1592,19 @@
             // Quick add buttons
             document.querySelectorAll('[data-courses]').forEach(button => {
                 button.addEventListener('click', function() {
-                    courseInput.value = this.getAttribute('data-courses');
+                    const currentValue = courseInput.value.trim();
+                    const newCourses = this.getAttribute('data-courses');
+                    
+                    if (currentValue === '') {
+                        courseInput.value = newCourses;
+                    } else {
+                        // Add comma separation and avoid duplicates
+                        const currentCourses = currentValue.split(',').map(c => c.trim());
+                        const coursesToAdd = newCourses.split(',').map(c => c.trim());
+                        
+                        const combinedCourses = [...new Set([...currentCourses, ...coursesToAdd])];
+                        courseInput.value = combinedCourses.join(', ');
+                    }
                 });
             });
             
